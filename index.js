@@ -9,6 +9,17 @@ const {
   USER_TOKEN: userToken,
 } = process.env;
 
+const countAddSpace = (s, width) => {
+  let count = 0;
+  s.forEach(a=>{
+    if(a>'\u4e00' && a <'\u9fff') {
+      count++;
+    }
+  });
+
+  return width - s.length - count;
+}
+
 (async () => {
   /**
    * First, get user record
@@ -30,18 +41,20 @@ const {
     totalPlayCount += data.playCount;
   });
 
-  const icon = ['🥇', '🥈', '🥉', '', '']
+  // const icon = ['🥇', '🥈', '🥉', '', '']
 
   const lines = weekData.slice(0, 5).reduce((prev, cur, index) => {
     const playCount = cur.playCount;
     const artists = cur.song.ar.map(a => a.name);
-    let name = `${cur.song.name.padEnd(16)} - ${artists.join('/').padEnd(10)}`;
 
-    const line = [
-      // icon[index].padEnd(2),
-      name,
+    const songName = cur.song.name;
+    const artistsName = artists.join('/');
+    
+    let line = [
+      songName + ' '.repeat(countAddSpace(songName, 24)),
+      artistsName + ' '.repeat(countAddSpace(artistsName, 16)),
       `${playCount}`.padEnd(2),
-      'plays',
+      'plays'
     ];
 
     return [...prev, line.join(' ')];
