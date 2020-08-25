@@ -35,13 +35,12 @@ const {
   const lines = weekData.slice(0, 5).reduce((prev, cur, index) => {
     const playCount = cur.playCount;
     const artists = cur.song.ar.map(a => a.name);
-    let name = `${cur.song.name} - ${artists.join('/')}`;
+    let name = `${cur.song.name.padEnd(16)} - ${artists.join('/').padEnd(10)}`;
 
     const line = [
-      icon[index].padEnd(2),
+      // icon[index].padEnd(2),
       name,
-      ' · ',
-      `${playCount}`,
+      `${playCount}`.padEnd(2),
       'plays',
     ];
 
