@@ -11,8 +11,8 @@ const {
 
 const countAddSpace = (s, width) => {
   let count = 0;
-  s.forEach(a=>{
-    if(a>'\u4e00' && a <'\u9fff') {
+  [...s].forEach(a=>{
+    if((a>'\u4e00' && a <'\u9fff') || 'FE10'<=a) {
       count++;
     }
   });
