@@ -12,7 +12,7 @@ const {
 const countAddSpace = (s, width) => {
   let count = 0;
   [...s].forEach(a=>{
-    if((a>'\u4e00' && a <'\u9fff') || 'FE10'<=a) {
+    if((a>'\u4e00' && a <'\u9fff') || ['（','）','。'].includes(a)) {
       count++;
     }
   });
@@ -51,7 +51,7 @@ const countAddSpace = (s, width) => {
     const artistsName = artists.join('/');
     
     let line = [
-      songName + ' '.repeat(countAddSpace(songName, 24)),
+      songName + ' '.repeat(countAddSpace(songName, 28)),
       artistsName + ' '.repeat(countAddSpace(artistsName, 16)),
       `${playCount}`.padEnd(2),
       'plays'
