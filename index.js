@@ -49,10 +49,10 @@ const countAddSpace = (s, width) => {
 
     const songName = cur.song.name;
     const artistsName = artists.join('/');
+    const prefix = `${songName} - ${artistsName}`;
     
     let line = [
-      songName + ' '.repeat(countAddSpace(songName, 28)),
-      artistsName + ' '.repeat(countAddSpace(artistsName, 16)),
+      prefix + ' '.repeat(countAddSpace(prefix,46)),
       `${playCount}`.padEnd(2),
       'plays'
     ];
